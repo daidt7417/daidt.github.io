@@ -3,8 +3,10 @@ const otpInput = document.getElementById("otp");
 
 otpInput.addEventListener("change", (e) => {
   const otp = e.target.value;
+  alert(otp)
   otpInputs.forEach((input, index) => {
     input.value = otp[index] || "";
+    alert(index, otp[index] || "")
 
     if (index < otpInputs.length - 1) {
       otpInputs[index + 1].focus();
