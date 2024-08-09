@@ -19,8 +19,8 @@ otpInputs.forEach((current) => {
 
     if (index === 0) {
       otpInputs.forEach((input, index) => {
-        alert(pastedData);
         input.value = otp[index] || "";
+        alert(otp[index]);
         if (index < otpInputs.length - 1 && otp[index]) {
           otpInputs[index + 1].focus();
         }
