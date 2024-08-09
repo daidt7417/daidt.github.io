@@ -3,14 +3,9 @@ const otpInput = document.getElementById("otp");
 
 otpInput.addEventListener("change", (e) => {
   const otp = e.target.value;
-  alert(otp)
+  alert(otp);
   otpInputs.forEach((input, index) => {
-    input.value = otp[index] || "";
-    alert(index, otp[index] || "")
-
-    if (index < otpInputs.length - 1) {
-      otpInputs[index + 1].focus();
-    }
+    input.value = otp[index] && otp[index] !== "?" ? otp[index] : "";
   });
 });
 
@@ -24,7 +19,10 @@ otpInputs.forEach((current, i) => {
     }
 
     if (event.inputType === "deleteContentBackward") {
-      if (current.previousElementSibling) {
+      if (
+        current.previousElementSibling &&
+        current.previousElementSibling.id !== "otp"
+      ) {
         current.previousElementSibling.focus();
       }
     } else if (current.nextElementSibling) {
@@ -32,7 +30,7 @@ otpInputs.forEach((current, i) => {
     }
 
     otpInput.value = [...otpInputs].reduce((opt, input) => {
-      return `${opt}${input.value}`;
+      return `${opt}${input.value || "?"}`;
     }, "");
     otpInput.dispatchEvent(new Event("change"));
   });
