@@ -3,7 +3,6 @@ const otpInput = document.getElementById("otp");
 
 otpInput.addEventListener("change", (e) => {
   const otp = e.target.value;
-  if (!otp) return;
   otpInputs.forEach((input, index) => {
     input.value = otp[index] || "";
 
