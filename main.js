@@ -1,21 +1,11 @@
 const otpInputs = document.querySelectorAll(".otp-input");
+const otpInput = document.getElementById("otp");
+
+otpInput.addEventListener("change", (e) => {
+  alert(e.target.value)
+});
 
 otpInputs.forEach((current, i) => {
-  if (i === 0) {
-    current.addEventListener("change", (e) => {
-      const otp = e.target.value;
-      alert("otp: ", otp);
-      otpInputs.forEach((input, index) => {
-        input.value = otp[index] || "";
-        if (index !== 0) {
-          if (index < otpInputs.length - 1 && otp[index]) {
-            otpInputs[index + 1].focus();
-          }
-        }
-      });
-    });
-  }
-
   current.addEventListener("input", (event) => {
     const value = Number(event.target.value);
     if (isNaN(value)) {
@@ -32,15 +22,10 @@ otpInputs.forEach((current, i) => {
       current.nextElementSibling.focus();
     }
 
-    if (index === 0) {
-      otpInputs.forEach((input, index) => {
-        input.value = otp[index] || "";
-        alert(otp[index]);
-        if (index < otpInputs.length - 1 && otp[index]) {
-          otpInputs[index + 1].focus();
-        }
-      });
-    }
+    otpInput.value = [...otpInputs].reduce((opt, input) => {
+      return `${opt}${input.value}`;
+    }, "");
+    otpInput.dispatchEvent(new Event("change"))
   });
 });
 
