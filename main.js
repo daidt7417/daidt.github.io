@@ -1,6 +1,20 @@
 const otpInputs = document.querySelectorAll(".otp-input");
 
-otpInputs.forEach((current) => {
+otpInputs.forEach((current, i) => {
+  if (i === 0) {
+    current.addEventListener("change", (e) => {
+      const otp = e.target.value;
+      otpInputs.forEach((input, index) => {
+        input.value = otp[index] || "";
+        if(index !== 0) {
+          if (index < otpInputs.length - 1 && otp[index]) {
+            otpInputs[index + 1].focus();
+          }
+        }
+      });
+    });
+  }
+
   current.addEventListener("input", (event) => {
     const value = Number(event.target.value);
     if (isNaN(value)) {
