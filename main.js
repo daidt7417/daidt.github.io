@@ -19,6 +19,7 @@ otpInputs.forEach((current) => {
 
     if (index === 0) {
       otpInputs.forEach((input, index) => {
+        alert(pastedData);
         input.value = otp[index] || "";
         if (index < otpInputs.length - 1 && otp[index]) {
           otpInputs[index + 1].focus();
@@ -31,7 +32,6 @@ otpInputs.forEach((current) => {
 window.addEventListener("paste", (event) => {
   const clipboardData = event.clipboardData || window.clipboardData;
   const pastedData = clipboardData.getData("text").trim();
-  alert(pastedData);
 
   if (/^\d{4}$/.test(pastedData)) {
     otpInputs.forEach((input, index) => {
