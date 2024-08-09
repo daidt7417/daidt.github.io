@@ -2,7 +2,14 @@ const otpInputs = document.querySelectorAll(".otp-input");
 const otpInput = document.getElementById("otp");
 
 otpInput.addEventListener("change", (e) => {
-  alert(e.target.value)
+  const otp = e.target.value
+  otpInputs.forEach((input, index) => {
+    input.value = otp[index];
+
+    if (index < otpInputs.length - 1) {
+      otpInputs[index + 1].focus();
+    }
+  });
 });
 
 otpInputs.forEach((current, i) => {
