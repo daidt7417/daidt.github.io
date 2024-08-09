@@ -2,10 +2,15 @@ const otpInputs = document.querySelectorAll(".otp-input");
 
 otpInputs.forEach((current, i) => {
   current.addEventListener("change", (event) => {
-    const otp = Number(event.target.value);
-    if (otp.length <= 1) return;
+    const otp = String(event.target.value);
+
+    if (otp.length <= 3) {
+      current.value = otp[0] || "";
+      return;
+    }
+
     otpInputs.forEach((input, index) => {
-      input.value = otp || "";
+      input.value = otp[index] || "";
 
       if (index < otpInputs.length - 1) {
         otpInputs[index + 1].focus();
@@ -16,8 +21,9 @@ otpInputs.forEach((current, i) => {
 
 otpInputs.forEach((current, i) => {
   current.addEventListener("input", (event) => {
-    const value = Number(event.target.value);
-    if (isNaN(value)) {
+    event.preventDefault();
+    const value = event.target.value;
+    if (isNaN(Number(value))) {
       current.value = "";
       event.preventDefault();
       return;
@@ -33,20 +39,9 @@ otpInputs.forEach((current, i) => {
     } else if (current.nextElementSibling) {
       current.nextElementSibling.focus();
     }
+
+    if (i + 1 === otpInputs.length) {
+      otpInputs[i].dispatchEvent(new Event("change"));
+    }
   });
 });
-
-// window.addEventListener("paste", (event) => {
-//   const clipboardData = event.clipboardData || window.clipboardData;
-//   const pastedData = clipboardData.getData("text").trim();
-
-//   if (/^\d{4}$/.test(pastedData)) {
-//     otpInputs.forEach((input, index) => {
-//       input.value = pastedData[index];
-
-//       if (index < otpInputs.length - 1) {
-//         otpInputs[index + 1].focus();
-//       }
-//     });
-//   }
-// });
