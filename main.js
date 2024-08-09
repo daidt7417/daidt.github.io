@@ -2,9 +2,10 @@ const otpInputs = document.querySelectorAll(".otp-input");
 const otpInput = document.getElementById("otp");
 
 otpInput.addEventListener("change", (e) => {
-  const otp = e.target.value
+  const otp = e.target.value;
+  if (!otp) return;
   otpInputs.forEach((input, index) => {
-    input.value = otp[index];
+    input.value = otp[index] || "";
 
     if (index < otpInputs.length - 1) {
       otpInputs[index + 1].focus();
@@ -32,7 +33,7 @@ otpInputs.forEach((current, i) => {
     otpInput.value = [...otpInputs].reduce((opt, input) => {
       return `${opt}${input.value}`;
     }, "");
-    otpInput.dispatchEvent(new Event("change"))
+    otpInput.dispatchEvent(new Event("change"));
   });
 });
 
