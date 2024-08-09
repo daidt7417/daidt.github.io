@@ -22,6 +22,7 @@ otpInputs.forEach((current) => {
 window.addEventListener("paste", (event) => {
   const clipboardData = event.clipboardData || window.clipboardData;
   const pastedData = clipboardData.getData("text").trim();
+  alert(pastedData)
 
   if (/^\d{4}$/.test(pastedData)) {
     otpInputs.forEach((input, index) => {
