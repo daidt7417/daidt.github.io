@@ -4,9 +4,10 @@ otpInputs.forEach((current, i) => {
   if (i === 0) {
     current.addEventListener("change", (e) => {
       const otp = e.target.value;
+      alert("otp: ", otp);
       otpInputs.forEach((input, index) => {
         input.value = otp[index] || "";
-        if(index !== 0) {
+        if (index !== 0) {
           if (index < otpInputs.length - 1 && otp[index]) {
             otpInputs[index + 1].focus();
           }
