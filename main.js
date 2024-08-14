@@ -12,7 +12,7 @@ otpInputs.forEach((current, i) => {
     otpInputs.forEach((input, index) => {
       input.value = otp[index] || "";
 
-      if (index < otpInputs.length - 1) {
+      if (otp[index] && index < otpInputs.length - 1) {
         otpInputs[index + 1].focus();
       }
     });
