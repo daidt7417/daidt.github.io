@@ -4,10 +4,10 @@ otpInputs.forEach((current, i) => {
   current.addEventListener("change", (event) => {
     const otp = String(event.target.value);
 
-    if (otp.length <= 3) {
-      current.value = otp[0] || "";
-      return;
-    }
+    // if (otp.length <= 3) {
+    //   current.value = otp[0] || "";
+    //   return;
+    // }
 
     otpInputs.forEach((input, index) => {
       input.value = otp[index] || "";
